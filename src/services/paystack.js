@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const PAYSTACK_SECRET_KEY = 'sk_test_2c4432f3c1a75f966fa22e522090f8a99023ccf7';
+// Use environment variable instead of hardcoded key
+const PAYSTACK_SECRET_KEY = process.env.REACT_APP_PAYSTACK_SECRET_KEY;
 
 const paystack = axios.create({
   baseURL: 'https://api.paystack.co',
