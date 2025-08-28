@@ -1,3 +1,4 @@
+require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
 
 // Load the SendGrid API key from .env
@@ -13,7 +14,10 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 async function sendEmail(to, subject, text, html = '') {
   const msg = {
     to,
-    from: process.env.SENDGRID_FROM_EMAIL, // also from .env
+    from: { 
+        email: 'georgeannann461@gmail.com',  // must be a verified sender in SendGrid
+      name: 'Slawn Admin'                  // optional display name
+    },
     subject,
     text,
     html,
@@ -31,3 +35,11 @@ async function sendEmail(to, subject, text, html = '') {
 }
 
 module.exports = sendEmail;
+
+// Only for testing
+sendEmail(
+  'recipient@example.com',
+  'Test Email',
+  'This is a test email from Node.js!',
+  '<strong>This is a test email from Node.js!</strong>'
+);
